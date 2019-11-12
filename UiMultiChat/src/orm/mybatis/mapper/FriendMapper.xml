@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Friend">
+	
+	<insert id="insertFriend" parameterType="IdDTO">
+		INSERT INTO FRIEND_LIST (MY_ID, F_ID)
+		VALUES(#{myId},#{fId})
+	</insert>
+	
+	<select id="selectFriendList" parameterType="String" resultType="ProfileDTO">
+		select PROFILE.ID, PROFILE.P_NAME, PROFILE.P_MESSAGE, PROFILE.IMG_DUP_NAME 
+		from FRIEND_LIST inner join PROFILE on friend_list.f_id = PROFILE.id
+		where MY_ID=#{value}
+		order by decode(P_NAME,#{value},P_NAME),P_NAME asc
+	</select>
+
+</mapper>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Chat">
+	<insert id="insertChat" parameterType="ChatRoomDTO">
+		INSERT INTO CHAT_LIST
+		VALUES(#{c_id}, #{id}, #{c_name})
+	</insert>
+	
+	<select id="selectChatRoomId" resultType="int">
+		SELECT MAX(C_NUMBER)
+		FROM CHAT_LIST
+	</select>
+	
+	<select id="selectChatList" resultType="ChatRoomDTO">
+		SELECT *
+		FROM CHAT_LIST
+	</select>
+
+</mapper>

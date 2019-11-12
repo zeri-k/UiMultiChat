@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="member">
+
+	<insert id="insertMember" parameterType="JoinDTO">
+		INSERT INTO MEMBER
+		VALUES(#{id},#{pw},#{name},#{tel},#{email})
+	</insert>
+	
+	<select id="selectLogin" parameterType="LoginDTO" resultType="LoginDTO">
+		SELECT ID, PW
+		FROM MEMBER
+		WHERE ID=#{id} and pw=#{pw}
+	</select>
+	
+	
+	
+	
+	<insert id="insertProfile" parameterType="JoinDTO">
+		INSERT INTO PROFILE (ID, P_NAME)
+		VALUES(#{id},#{name})
+	</insert>
+	
+	<select id="selectProfile" parameterType="String" resultType="ProfileDTO">
+		SELECT P_NAME, P_MESSAGE, IMG_DUP_NAME
+		FROM PROFILE
+		WHERE ID=#{value}
+	</select>
+	
+	<select id="selectIdSearch" parameterType="IdSearchDTO" resultType="String">
+		SELECT ID
+		FROM MEMBER
+		WHERE NAME=#{name} and Phone=#{tel}
+	</select>
+	
+	<select id="selectPwSearch" parameterType="PwSearchDTO" resultType="String">
+		SELECT PW
+		FROM MEMBER
+		WHERE ID=#{id} and EMAIL=#{email}
+	</select>
+	
+	<update id="updatePw" parameterType="PwSearchDTO">
+		UPDATE MEMBER
+		SET PW=#{pw}
+		WHERE ID=#{id}
+	</update>
+	
+	
+
+</mapper>

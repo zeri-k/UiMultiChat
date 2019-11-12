@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<properties resource="orm/mybatis/config/oracle.properties" />
+	<typeAliases>
+		<typeAlias type="client.dtos.JoinDTO" alias="JoinDTO"></typeAlias>
+		<typeAlias type="client.dtos.LoginDTO" alias="LoginDTO"></typeAlias>
+		<typeAlias type="client.dtos.ProfileDTO" alias="ProfileDTO"></typeAlias>
+		<typeAlias type="client.dtos.IdDTO" alias="IdDTO"></typeAlias>
+		<typeAlias type="client.dtos.ChatRoomDTO" alias="ChatRoomDTO"></typeAlias>
+		<typeAlias type="client.dtos.IdSearchDTO" alias="IdSearchDTO"></typeAlias>
+		<typeAlias type="client.dtos.PwSearchDTO" alias="PwSearchDTO"></typeAlias>
+	</typeAliases>
+	<environments default="oracle">
+		<environment id="oracle">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="driver" value="${jdbc.driverClassName}" />
+				<property name="url" value="${jdbc.url}" />
+				<property name="username" value="${jdbc.username}" />
+				<property name="password" value="${jdbc.password}" />
+			</dataSource>
+		</environment>
+		
+		<environment id="sqlite">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="driver" value="org.sqlite.JDBC" />
+				<property name="url" value="jdbc:sqlite:src/client/chat.db" />
+			</dataSource>
+		</environment>
+	</environments>
+	<mappers>
+		<mapper resource="orm/mybatis/mapper/Mapper.xml" />
+		<mapper resource="orm/mybatis/mapper/FriendMapper.xml" />
+		<mapper resource="orm/mybatis/mapper/ChatMapper.xml" />
+	</mappers>
+</configuration>
